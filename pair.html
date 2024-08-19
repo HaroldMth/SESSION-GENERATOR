@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pair Code</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
     body {
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
-      background: black;
-      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #1f1f1f, #0d0d0d);
+      font-family: 'Roboto', sans-serif;
+      color: #f6f5f5;
     }
 
     .container {
@@ -23,142 +27,131 @@
     }
 
     .box {
-      width: 300px;
-      height: 320px;
+      width: 350px;
       padding: 20px;
-      position: relative;
+      background: #121212;
+      border-radius: 15px;
       text-align: center;
-      background-color: rgb(0, 0, 0);
-      border-radius: 10px;
-      transform: perspective(1000px) rotateY(0deg);
-      box-shadow: 0 0 20px rgba(250, 249, 249, 0.7);
-      position: relative;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+      transition: transform 0.4s ease-in-out;
     }
 
-    #text {
-      color: #f6f5f5;
+    .box:hover {
+      transform: scale(1.05);
     }
 
-    .input-container input {
-      color: #f1eaea;
+    h3 {
+      font-weight: 500;
+      color: #ffffff;
     }
 
-    .centered-text {
-      color: #e9e4e4;
+    h6 {
+      font-weight: 300;
+      color: #bdbdbd;
     }
 
     .input-container {
       display: flex;
-      background: rgb(10, 10, 10);
+      background: #1c1c1c;
       border-radius: 1rem;
-      background: black;
-      box-shadow: black;
       padding: 0.3rem;
       gap: 0.3rem;
-      max-width: 300px;
-      width: 100%;
+      max-width: 100%;
+      margin-top: 15px;
     }
 
     .input-container input {
       border-radius: 0.8rem 0 0 0.8rem;
-      background: #e8e8e8;
-      box-shadow: inset 13px 13px 10px #dcdcdc, inset -13px -13px 10px #f4f4f4;
+      background: #1f1f1f;
+      box-shadow: inset 4px 4px 8px #0e0e0e, inset -4px -4px 8px #2e2e2e;
       width: 100%;
-      flex-basis: 75%;
       padding: 1rem;
       border: none;
-      border-left: 2px solid #ecf2f8;
-      color: #000000;
+      color: #ffffff;
       transition: all 0.2s ease-in-out;
     }
 
     .input-container input:focus {
-      border-left: 2px solid #ecf1f6;
+      border-left: 2px solid #5935ac;
       outline: none;
-      box-shadow: inset 13px 13px 10px #f0f2f3, inset -13px -13px 10px #f4f4f4;
+      box-shadow: inset 4px 4px 8px #121212, inset -4px -4px 8px #343434;
     }
 
     .input-container button {
-      flex-basis: 15%;
       padding: 1rem;
-      background: #5935ac;
+      background: linear-gradient(135deg, #5935ac, #c01736);
       font-weight: 700;
-      letter-spacing: 0.3rem;
       text-transform: uppercase;
       color: white;
       border: none;
-      width: 90%;
       border-radius: 0 1rem 1rem 0;
-      transition: all 0.2s ease-in-out;
+      transition: background 0.2s ease-in-out;
+      cursor: pointer;
     }
 
     .input-container button:hover {
-      background: linear-gradient(135deg, #c01736 0%, #8b17b6 100%);
-    }
-
-    @media (max-width: 500px) {
-      .input-container {
-        flex-direction: column;
-      }
-
-      .input-container input {
-        border-radius: 0.8rem;
-      }
-
-      .input-container button {
-        padding: 0.4rem;
-        border-radius: 0.8rem;
-      }
+      background: linear-gradient(135deg, #c01736, #8b17b6);
     }
 
     .centered-text {
       text-align: center;
+      margin-top: 10px;
+      color: #a5a5a5;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 0.8rem;
+      color: #7a7a7a;
     }
 
     @media (max-width: 500px) {
       .box {
-        width: 90%; 
+        width: 90%;
+      }
+
+      .input-container {
+        flex-direction: column;
+      }
+
+      .input-container input,
+      .input-container button {
+        width: 100%;
+        border-radius: 0.8rem;
+        margin-bottom: 10px;
       }
     }
 
-    @media (max-width: 500px) {
-      .input-container input {
-        border-radius: 0.8rem;
-        width: 80%; 
-      }
-
-      .input-container button {
-        padding: 1rem;
-        border-radius: 0.9rem;
-        width: 100%; 
-      }
+    #waiting-message {
+      color: #ff5252;
+      font-weight: bold;
+      font-size: 1rem;
+      display: none;
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <div class="main">
       <div class="box" id="box">
         <div id="text">
-          <i class="fa fa-user"></i>
-          <p>
-            <h3 class="centered-text">HANS TECH PAIRING CODE</h3>
-            <br>
-            <h6>Made By HANS TECH 🌟.</h6>
-            <h6>Enter Your Number with Country Code.</h6>
-            <div class="input-container">
-              <input placeholder="923192173xxx" type="number" id="number" placeholder="Enter your Phone Pumber with Cuntry Code" name="">
-              <button id="submit">Submit</button>
-            </div>
-            
-            <a id="waiting-message" class="centered-text" style="display: none;">Please wait a while</a>
-            <br>
-            <br>
-            <main id="pair"></main>
-          </p>
+          <i class="fa fa-user fa-3x" style="color: #5935ac;"></i>
+          <h3>HANS TECH PAIRING CODE</h3>
+          <h6>Made By HANS TECH 🌟</h6>
+          <h6>Enter Your Number with Country Code</h6>
+          <div class="input-container">
+            <input placeholder="923192173xxx" type="number" id="number" name="">
+            <button id="submit">Submit</button>
+          </div>
+          <div class="centered-text" id="waiting-message">Please wait a while</div>
+          <main id="pair"></main>
         </div>
       </div>
     </div>
+    <footer>
+      <p>© 2024 HANS TECH. All rights reserved.</p>
+    </footer>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
   <script>
@@ -172,21 +165,19 @@
       let obj = document.getElementById("copy");
       await navigator.clipboard.writeText(obj.innerText.replace('CODE: ', ''));
       obj.innerText = "COPIED";
-      obj.style = "color:blue;font-weight:bold";
-      obj.size = "5";
+      obj.style = "color:#ff5252;font-weight:bold";
       setTimeout(() => {
         obj.innerText = text;
-        obj.style = "color:white;font-weight-bold";
-        obj.size = "5";
+        obj.style = "color:#ffffff;font-weight-bold";
       }, 500);
     }
 
     b.addEventListener("click", async (e) => {
       e.preventDefault();
       if (!c.value) {
-        a.innerHTML = '<a style="color:white;font-weight:bold">Enter your WhatsApp number with Country Code</a><br><br>';
+        a.innerHTML = '<a style="color:#ff5252;font-weight:bold">Enter your WhatsApp number with Country Code</a><br><br>';
       } else if (c.value.replace(/[^0-9]/g, "").length < 11) {
-        a.innerHTML = '<a style="color:red;font-weight:bold">Invalid Number</a><br><br>';
+        a.innerHTML = '<a style="color:#ff5252;font-weight:bold">Invalid Number</a><br><br>';
       } else {
         const Wasi_Tech = c.value.replace(/[^0-9]/g, "");
         let bb = "";
@@ -204,13 +195,14 @@
         });
         c.type = "text";
         c.value = "+" + bb;
-        c.style = "color:black;font-size:20px";
-        a.innerHTML = '<a style="color:white;font-weight:bold">Please Wait...</a><br><br>';
+        c.style = "color:#ffffff;font-size:20px";
+        a.innerHTML = '<a style="color:#ff5252;font-weight:bold">Please Wait...</a><br><br>';
         let { data } = await axios(`/code?number=${Wasi_Tech}`);
         let code = data.code || "Service Unavailable";
-        a.innerHTML = '<font id="copy" onclick="Copy()" style="color:red;font-weight:bold" size="5">CODE: <span style="color:white;font-weight:bold">' + code + '</span></font><br><br><br>';
+        a.innerHTML = '<font id="copy" onclick="Copy()" style="color:#5935ac;font-weight:bold" size="5">CODE: <span style="color:#ffffff;font-weight:bold">' + code + '</span></font><br><br><br>';
       }
     });
   </script>
 </body>
-</html>
+
+  </html>
